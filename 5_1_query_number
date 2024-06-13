@@ -1,0 +1,20 @@
+# -*- coding: cp1251 -*-
+# Запрос у пользователя целого числа
+number = int(input("Введите целое число: "))
+
+# Проверка четности числа
+if number == 0:
+    description = "нулевое число"
+elif number % 2 == 0:
+    if number > 0:
+        description = "положительное четное число"
+    else:
+        description = "отрицательное четное число"
+else:
+    if number > 0:
+        description = "положительное нечетное число"
+    else:
+        description = "отрицательное нечетное число"
+
+# Вывод результата
+print(description)
