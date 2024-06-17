@@ -1,0 +1,27 @@
+# -*- coding: cp1251 -*-
+# Считываем входные данные
+max_weight = int(input())
+num_fishermen = int(input())
+
+weights = [int(input()) for _ in range(num_fishermen)]
+weights.sort()  # Сортируем веса рыбаков
+
+# Инициализируем указатели и счетчик лодок
+i = 0
+j = num_fishermen - 1
+boats = 0
+
+# Начинаем переправку рыбаков
+while i <= j:
+    if i == j:
+        boats += 1
+        break
+    if weights[i] + weights[j] > max_weight:
+        boats += 1
+        j -= 1
+    else:
+        boats += 1
+        i += 1
+        j -= 1
+
+print(boats)
