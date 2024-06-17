@@ -1,0 +1,18 @@
+def factorial(n):
+    if n == 0:
+        return 1
+    return n * factorial(n-1)
+
+def factorial_list(n):
+    initial_factorial = factorial(n)
+    factorial_values = [initial_factorial]
+    for i in range(n-1, 0, -1):
+        initial_factorial = initial_factorial // i
+        factorial_values.append(initial_factorial)
+    return factorial_values
+
+# Пример использования
+input_number = 3
+print(f"Факториал числа {input_number}:", factorial(input_number))
+result_list = factorial_list(input_number)
+print("Список факториалов в убывающем порядке:", result_list)
