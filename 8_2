@@ -1,0 +1,20 @@
+# -*- coding: cp1251 -*-
+def rearrange_array(arr):
+    n = len(arr)
+    reversed_arr = list(reversed(arr))  # Переворачиваем исходный массив
+    new_arr = [reversed_arr[(n-1) - i] for i in range(n)]  # Формируем новый массив
+
+    return new_arr
+
+# Считываем количество чисел
+N = int(input())
+
+# Считываем числа, разделенные пробелом, и создаем список
+numbers = list(map(int, input().split()))
+
+# Изменяем массив согласно условию задачи
+result = rearrange_array(numbers)
+
+# Выводим измененный массив
+for num in result:
+    print(num)
