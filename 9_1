@@ -1,0 +1,10 @@
+# -*- coding: cp1251 -*-
+# Считываем входные данные
+n = int(input())
+numbers = list(map(int, input().split()))
+
+# Создаем множество для хранения уникальных чисел
+unique_numbers = set(numbers)
+
+# Выводим количество уникальных чисел
+print(len(unique_numbers))
