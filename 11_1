@@ -1,0 +1,93 @@
+# -*- coding: cp1251 -*-
+import collections
+
+# Словарь для хранения информации о питомцах
+pets = {
+    1: {
+        "Мухтар": {
+            "Вид питомца": "Собака",
+            "Возраст питомца": 9,
+            "Имя владельца": "Павел"
+        },
+    },
+    2: {
+        "Каа": {
+            "Вид питомца": "желторотый питон",
+            "Возраст питомца": 19,
+            "Имя владельца": "Саша"
+        },
+    }
+}
+
+def create():
+    last = collections.deque(pets, maxlen=1)[0]
+    new_id = last + 1
+    pet_name = input("Введите имя питомца: ")
+    pet_info = {
+        'Вид питомца': input("Введите вид питомца: "),
+        'Возраст питомца': int(input("Введите возраст питомца: ")),
+        'Имя владельца': input("Введите имя владельца: ")
+    }
+    pets[new_id] = {pet_name: pet_info}
+
+def read(pet_name):
+    if pet_name in (pet for pet_dict in [pets[key] for key in pets] for pet in pet_dict):
+        for key in pets:
+            if pet_name in pets[key]:
+                pet_info = pets[key][pet_name]
+                print(f"Это {pet_info['Вид питомца']} по кличке \"{pet_name}\". Возраст питомца: {pet_info['Возраст питомца']} лет. Имя владельца: {pet_info['Имя владельца']}")
+    else:
+        print("Питомец не найден.")
+
+def update(pet_name, new_info):
+    for key in pets:
+        if pet_name in pets[key]:
+            pets[key][pet_name].update(new_info)
+
+def delete(pet_name):
+    for key in pets:
+        if pet_name in pets[key]:
+            del pets[key][pet_name]
+
+def get_pet(ID):
+    return pets[ID] if ID in pets.keys() else False
+
+def get_suffix(age):
+    age_suffix = "год" if age == 1 else "года" if 1 < age < 5 else "лет"
+    return age_suffix
+
+def pets_list():
+    for key in pets:
+        for pet_name in pets[key]:
+            pet_info = pets[key][pet_name]
+            age_suffix = get_suffix(pet_info['Возраст питомца'])
+            print(f"Питомец: {pet_name}, {pet_info['Вид питомца']} возрастом {pet_info['Возраст питомца']} {age_suffix}, владелец: {pet_info['Имя владельца']}")
+
+# Основной цикл программы
+while True:
+    command = input("Введите команду (create, read, update, delete, list, stop): ")
+    
+    if command == 'stop':
+        break
+    elif command == 'create':
+        create()
+    elif command == 'read':
+        pet_name = input("Введите имя питомца для просмотра: ")
+        read(pet_name)
+    elif command == 'update':
+        pet_name = input("Введите имя питомца для обновления: ")
+        new_info = {
+            'Вид питомца': input("Введите новый вид питомца: "),
+            'Возраст питомца': int(input("Введите новый возраст питомца: ")),
+            'Имя владельца': input("Введите новое имя владельца: ")
+        }
+        update(pet_name, new_info)
+    elif command == 'delete':
+        pet_name = input("Введите имя питомца для удаления: ")
+        delete(pet_name)
+    elif command == 'list':
+        pets_list()
+    else:
+        print("Некорректная команда. Пожалуйста, введите одну из доступных команд.")
+
+print("Программа завершена.")
