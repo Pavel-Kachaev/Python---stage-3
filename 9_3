@@ -1,0 +1,11 @@
+# -*- coding: cp1251 -*-
+numbers_set = set()  # Создаем пустое множество для хранения чисел
+
+numbers = input().split()  # Считываем строку с числами и разбиваем ее на отдельные числа
+
+for num in numbers:
+    if num in numbers_set:
+        print("YES")
+    else:
+        print("NO")
+        numbers_set.add(num)  # Добавляем число в множество, чтобы отметить его как встреченное
