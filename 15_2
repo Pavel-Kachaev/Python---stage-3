@@ -7,8 +7,6 @@ class Transport:
         self.mileage = mileage
 
 class Autobus(Transport):
-    def __init__(self, name, max_speed, mileage):
-        super().__init__(name, max_speed, mileage)
 
     def seating_capacity(self, capacity=50):
         return f"Вместимость одного автобуса {self.name}: {capacity} пассажиров"
